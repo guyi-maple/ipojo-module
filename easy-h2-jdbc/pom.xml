@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ipojo-module</artifactId>
+        <groupId>top.guyi.iot.ipojo.module</groupId>
+        <version>1.0.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>easy-h2-jdbc</artifactId>
+    <packaging>ipojo-bundle</packaging>
+
+    <properties>
+        <h2.version>1.4.199</h2.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>top.guyi.iot.ipojo.module</groupId>
+            <artifactId>stream</artifactId>
+            <version>${version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

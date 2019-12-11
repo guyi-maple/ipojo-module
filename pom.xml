@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>top.guyi.iot.ipojo.module</groupId>
+    <artifactId>ipojo-module</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0.0</version>
+    <modules>
+        <module>easy-h2-jdbc</module>
+        <module>stream</module>
+        <module>coap-server</module>
+        <module>easy-helper</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <encoding>UTF-8</encoding>
+        <java.version>1.7</java.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
+        <ipojo.compile.version>1.0.0.0</ipojo.compile.version>
+        <ipojo.version>1.0.0.0</ipojo.version>
+        <lombok.version>1.18.8</lombok.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>top.guyi.iot.ipojo.compile</groupId>
+                <artifactId>compile-maven-plugin</artifactId>
+                <version>${ipojo.compile.version}</version>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>guyi</id>
+            <name>guyi</name>
+            <url>http://nexus.guyi-maple.top/nexus/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+        <repository>
+            <id>guyi</id>
+            <name>guyi</name>
+            <url>http://nexus.guyi-maple.top/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>guyi-iot</id>
+            <name>guyi-iot</name>
+            <url>http://nexus.guyi-maple.top/nexus/content/repositories/iot/</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>top.guyi.iot.ipojo</groupId>
+            <artifactId>ipojo</artifactId>
+            <version>${ipojo.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

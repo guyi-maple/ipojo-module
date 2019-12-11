@@ -1,0 +1,7 @@
+{
+  "name": "coap-server",
+  "package": "top.guyi.iot.ipojo.module.coap",
+  "jdk": "7",
+  "formatJdkVersion": true,
+  "modules": "coap"
+}

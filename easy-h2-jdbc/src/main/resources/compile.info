@@ -1,0 +1,16 @@
+{
+  "name": "h2-jdbc",
+  "package": "top.guyi.iot.ipojo.module.h2",
+  "jdk": "7",
+  "formatJdkVersion": true,
+  "manifest": {
+    "Private-Package": [
+      "org.h2.jdbcx"
+    ],
+    "Import-Package": [
+      "javax.naming.spi",
+      "javax.naming",
+      "javax.sql"
+    ]
+  }
+}
