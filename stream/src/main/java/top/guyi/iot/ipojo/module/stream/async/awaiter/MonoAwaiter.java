@@ -11,16 +11,20 @@ public class MonoAwaiter<T> {
     private Publisher<T> publisher;
     private T data;
 
-    public static <T> MonoAwaiter<T> create(){
+    public static <T> MonoAwaiter<T> create(boolean sync){
         final MonoAwaiter<T> awaiter = new MonoAwaiter<>();
         awaiter.mono = Mono.create(new Producer<T>() {
             @Override
             public void produce(Publisher<T> publisher) {
                 awaiter.publisher = publisher;
             }
-        });
+        },sync);
         awaiter.mono.open();
         return awaiter;
+    }
+
+    public static <T> MonoAwaiter<T> create(){
+        return create(false);
     }
 
     public void publish(T data){

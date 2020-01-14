@@ -1,5 +1,6 @@
 package top.guyi.iot.ipojo.module.stream;
 
+import lombok.Getter;
 import lombok.Setter;
 import top.guyi.iot.ipojo.application.annotation.Component;
 import top.guyi.iot.ipojo.application.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
-@Component(proxy = false,order = 800)
+@Component(order = 800)
 public class AbstractStream<T> implements Stream<T>, InitializingBean {
 
     protected static ExecutorService service;
@@ -34,6 +35,9 @@ public class AbstractStream<T> implements Stream<T>, InitializingBean {
     private Producer<T> producer;
     private List<Subscriber<T>> subscribers = new LinkedList<>();
 
+    @Getter
+    @Setter
+    private boolean sync;
 
     @Override
     public <R extends Stream<T>> R  subscription(Subscriber<T> subscriber){
@@ -76,12 +80,16 @@ public class AbstractStream<T> implements Stream<T>, InitializingBean {
             throw new StreamOpenException();
         }
         for (final Subscriber<T> subscriber : this.subscribers) {
-            AbstractStream.service.execute(new Runnable() {
-                @Override
-                public void run() {
-                    subscriber.subscription(value);
-                }
-            });
+            if (this.sync){
+                subscriber.subscription(value);
+            }else{
+                AbstractStream.service.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        subscriber.subscription(value);
+                    }
+                });
+            }
         }
     }
 

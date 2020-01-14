@@ -25,4 +25,10 @@ public class SingleJdbcDataSource extends JdbcDataSource {
         }
         return this.connection;
     }
+
+    public void closeConnection() throws SQLException {
+        if (this.connection != null){
+            this.connection.realClose();
+        }
+    }
 }
