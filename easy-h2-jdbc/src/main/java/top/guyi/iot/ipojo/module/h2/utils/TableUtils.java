@@ -43,7 +43,7 @@ public class TableUtils {
             });
         } catch (SQLException e) {
             e.printStackTrace();
-            this.logger.error("字段查询失败 {}",e.getMessage(),e);
+            this.logger.error("field select error {}",e.getMessage(),e);
         }
     }
     public boolean fieldExist(String tableName,String fieldName) {

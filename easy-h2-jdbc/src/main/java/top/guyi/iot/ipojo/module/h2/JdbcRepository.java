@@ -132,6 +132,7 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
     public void save(E entity){
         if (entity.getId() != null){
             this.update(entity,false);
+            return;
         }else{
             entity.setId(entity.idGenerator().get());
         }
@@ -177,7 +178,7 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
 
     public boolean update(E entity,boolean ignoreNull){
         if (entity.getId() == null){
-            throw new SqlRuntimeException("对象更新,主键不可为空");
+            throw new SqlRuntimeException("update object, id field must not null");
         }
 
         List<WhereConditionItem> values = new LinkedList<>();

@@ -17,16 +17,29 @@ public enum ColumnTypeConverter {
             return rs.getString(columnName);
         }
     }),
-    INTEGER(Integer.class, "bigint(%s)", 32, new ResultSetTypeConverter<Integer>(){
+    INTEGER(Integer.class, "bigint(%s)", 16, new ResultSetTypeConverter<Integer>(){
         @Override
         public Integer convert(String columnName, ResultSet rs) throws SQLException {
             return rs.getInt(columnName);
         }
     }),
-    INTEGER_BASE(int.class, "bigint(%s)", 32, new ResultSetTypeConverter<Integer>(){
+    INTEGER_BASE(int.class, "bigint(%s)", 16, new ResultSetTypeConverter<Integer>(){
         @Override
         public Integer convert(String columnName, ResultSet rs) throws SQLException {
             return rs.getInt(columnName);
+        }
+    }),
+
+    LONG(Long.class, "bigint(%s)", 32, new ResultSetTypeConverter<Long>(){
+        @Override
+        public Long convert(String columnName, ResultSet rs) throws SQLException {
+            return rs.getLong(columnName);
+        }
+    }),
+    LONG_BASE(long.class, "bigint(%s)", 32, new ResultSetTypeConverter<Long>(){
+        @Override
+        public Long convert(String columnName, ResultSet rs) throws SQLException {
+            return rs.getLong(columnName);
         }
     }),
 
@@ -56,13 +69,13 @@ public enum ColumnTypeConverter {
         }
     }),
 
-    BOOLEAN(Boolean.class, "char(%s)", 1, new ResultSetTypeConverter<Boolean>() {
+    BOOLEAN(Boolean.class, "boolean", 1, new ResultSetTypeConverter<Boolean>() {
         @Override
         public Boolean convert(String columnName, ResultSet rs) throws SQLException {
             return rs.getBoolean(columnName);
         }
     }),
-    BOOLEAN_BASE(boolean.class, "char(%s)", 1, new ResultSetTypeConverter<Boolean>() {
+    BOOLEAN_BASE(boolean.class, "boolean", 1, new ResultSetTypeConverter<Boolean>() {
         @Override
         public Boolean convert(String columnName, ResultSet rs) throws SQLException {
             return rs.getBoolean(columnName);

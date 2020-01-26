@@ -16,4 +16,8 @@ public class Asynchronous {
         return result;
     }
 
+    public void invoke(Runnable invoker){
+        service.execute(invoker);
+    }
+
 }

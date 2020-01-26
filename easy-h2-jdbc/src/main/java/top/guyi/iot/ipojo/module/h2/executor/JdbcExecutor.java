@@ -17,7 +17,7 @@ import top.guyi.iot.ipojo.module.stream.subscriber.Subscriber;
 import java.sql.SQLException;
 import java.util.List;
 
-@Component(proxy = false)
+@Component
 public class JdbcExecutor implements InitializingBean {
 
     @Resource
@@ -77,7 +77,7 @@ public class JdbcExecutor implements InitializingBean {
         return this.execute(new JdbcInvoker<Integer>(){
             @Override
             public Integer invoke(QueryRunner runner) throws SQLException {
-                logger.debug("执行SQL [{}] Parameters {}",sql,args);
+                logger.debug("execute sql [{}] Parameters {}",sql,args);
                 return runner.update(sql,args.toArray());
             }
         });
@@ -87,7 +87,7 @@ public class JdbcExecutor implements InitializingBean {
         return this.execute(new JdbcInvoker<T>() {
             @Override
             public T invoke(QueryRunner runner) throws SQLException {
-                logger.debug("执行SQL [{}] Parameters {}",sql,args);
+                logger.debug("execute sql [{}] Parameters {}",sql,args);
                 return runner.query(sql,handler,args.toArray());
             }
         });

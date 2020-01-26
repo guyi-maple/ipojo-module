@@ -5,6 +5,7 @@ import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.coap.CoAP;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 import top.guyi.iot.ipojo.application.ApplicationContext;
+import top.guyi.iot.ipojo.application.osgi.log.StaticLogger;
 import top.guyi.iot.ipojo.module.coap.enums.CoapMethod;
 import top.guyi.iot.ipojo.module.coap.utils.CoapCurrent;
 
@@ -57,7 +58,9 @@ public abstract class CoapHandlerDecorator extends CoapResource {
         Object args = this.getArgs(exchange,invoker);
         args = args == null ? exchange : args;
         Object result = invoker.invoke(applicationContext,args);
-        exchange.respond(gson.toJson(result));
+        String json = gson.toJson(result);
+        StaticLogger.info("send coap response [{}] [{}]",this.getURI(),json);
+        exchange.respond(json);
     }
 
     private Object getArgs(CoapExchange exchange, CoapResourceInvoker invoker){
@@ -68,7 +71,9 @@ public abstract class CoapHandlerDecorator extends CoapResource {
         if (CoapExchange.class.isAssignableFrom(type)){
             return null;
         }
-        return gson.fromJson(exchange.getRequestText(),type);
+        String json = exchange.getRequestText();
+        StaticLogger.info("receive coap request [{}] [{}]",this.getURI(),json);
+        return gson.fromJson(json,type);
     }
 
 }

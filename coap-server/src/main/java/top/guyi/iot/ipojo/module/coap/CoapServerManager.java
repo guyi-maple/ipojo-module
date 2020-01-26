@@ -6,10 +6,12 @@ import org.osgi.framework.BundleContext;
 import top.guyi.iot.ipojo.application.ApplicationContext;
 import top.guyi.iot.ipojo.application.bean.interfaces.ApplicationStartEvent;
 import top.guyi.iot.ipojo.application.bean.interfaces.ApplicationStartSuccessEvent;
+import top.guyi.iot.ipojo.application.bean.interfaces.ApplicationStopEvent;
+import top.guyi.iot.ipojo.application.osgi.log.StaticLogger;
 
 import java.net.InetSocketAddress;
 
-public abstract class CoapServerManager implements ApplicationStartEvent, ApplicationStartSuccessEvent {
+public abstract class CoapServerManager implements ApplicationStartEvent, ApplicationStartSuccessEvent, ApplicationStopEvent {
 
     protected abstract void registerMapping(CoapServer server,ApplicationContext context);
 
@@ -25,6 +27,14 @@ public abstract class CoapServerManager implements ApplicationStartEvent, Applic
     @Override
     public void onStartSuccess(ApplicationContext applicationContext, BundleContext bundleContext) throws Exception {
         this.server.start();
-        System.out.println("coap服务器启动成功");
+        StaticLogger.info("coap server start success {}",this.server.getEndpoints().get(0).getUri());
+    }
+
+    @Override
+    public void onStop(ApplicationContext applicationContext, BundleContext bundleContext) {
+        if (this.server != null){
+            this.server.stop();
+            this.server = null;
+        }
     }
 }
