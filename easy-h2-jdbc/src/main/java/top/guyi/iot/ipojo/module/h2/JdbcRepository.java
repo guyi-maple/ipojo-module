@@ -130,7 +130,7 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
     }
 
     public void save(E entity){
-        if (entity.getId() != null){
+        if (entity.getId() != null && this.exists(entity.getId())){
             this.update(entity,false);
             return;
         }else{
