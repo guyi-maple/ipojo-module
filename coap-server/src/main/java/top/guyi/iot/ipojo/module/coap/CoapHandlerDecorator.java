@@ -55,6 +55,7 @@ public abstract class CoapHandlerDecorator extends CoapResource {
     }
 
     private void execute(CoapExchange exchange,CoapResourceInvoker invoker) {
+        StaticLogger.info("receive coap request [{}] [{}]",this.getURI(),exchange.getRequestText());
         Object args = this.getArgs(exchange,invoker);
         args = args == null ? exchange : args;
         Object result = invoker.invoke(applicationContext,args);
