@@ -226,6 +226,13 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
                 .single();
     }
 
+    public boolean exists(ID id){
+        return this.where().and()
+                .name(this.entity.getId().getName())
+                .value(id).eq()
+                .count() > 0;
+    }
+
     public boolean delete(ID id){
         return this.where().and()
                 .name(this.entity.getId().getName())
