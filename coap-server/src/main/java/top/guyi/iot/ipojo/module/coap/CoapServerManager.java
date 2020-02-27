@@ -10,6 +10,7 @@ import top.guyi.iot.ipojo.application.bean.interfaces.ApplicationStopEvent;
 import top.guyi.iot.ipojo.application.osgi.log.StaticLogger;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ScheduledExecutorService;
 
 public abstract class CoapServerManager implements ApplicationStartEvent, ApplicationStartSuccessEvent, ApplicationStopEvent {
 
@@ -26,6 +27,7 @@ public abstract class CoapServerManager implements ApplicationStartEvent, Applic
 
     @Override
     public void onStartSuccess(ApplicationContext applicationContext, BundleContext bundleContext) throws Exception {
+        this.server.setExecutor(applicationContext.get(ScheduledExecutorService.class,true));
         this.server.start();
         StaticLogger.info("coap server start success {}",this.server.getEndpoints().get(0).getUri());
     }
