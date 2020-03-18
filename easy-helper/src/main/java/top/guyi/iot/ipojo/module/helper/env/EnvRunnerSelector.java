@@ -16,16 +16,16 @@ public class EnvRunnerSelector {
 
     private Map<String,EnvRunner> runners = new HashMap<>();
 
-    public void putRunner(String key,String env,EnvRunner runner){
-        this.runners.put(String.format("%s-%s",key,env),runner);
+    public void putRunner(String key,String value,EnvRunner runner){
+        this.runners.put(String.format("%s-%s",key,value),runner);
     }
 
-    public Object selectAndRun(String key,String envKey,Object parameter){
-        String env = applicationContext.getEnv().get(envKey);
-        if (StringUtils.isEmpty(env)){
-            env = "default";
+    public Object selectAndRun(String key,Object parameter){
+        String value = applicationContext.getEnv().get(key);
+        if (StringUtils.isEmpty(value)){
+            value = "default";
         }
-        String id = String.format("%s-%s",key,env);
+        String id = String.format("%s-%s",key,value);
         EnvRunner runner = this.runners.get(id);
         if (runner != null){
             return runner.run(parameter);
