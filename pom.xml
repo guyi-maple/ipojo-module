@@ -57,11 +57,11 @@
             <name>aliyun</name>
             <url>https://maven.aliyun.com/repository/public</url>
         </repository>
-        <repository>
-            <id>guyi</id>
-            <name>guyi</name>
-            <url>http://nexus.guyi-maple.top/repository/maven-public/</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>guyi</id>-->
+<!--            <name>guyi</name>-->
+<!--            <url>http://nexus.guyi-maple.top/repository/maven-public/</url>-->
+<!--        </repository>-->
     </repositories>
 
     <distributionManagement>

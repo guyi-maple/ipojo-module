@@ -20,7 +20,7 @@ public class EnvRunnerSelector {
         this.runners.put(String.format("%s-%s",key,value),runner);
     }
 
-    public Object selectAndRun(String key,Object parameter){
+    public <T> T selectAndRun(String key,Object parameter){
         String value = applicationContext.getEnv().get(key);
         if (StringUtils.isEmpty(value)){
             value = "default";
@@ -28,7 +28,7 @@ public class EnvRunnerSelector {
         String id = String.format("%s-%s",key,value);
         EnvRunner runner = this.runners.get(id);
         if (runner != null){
-            return runner.run(parameter);
+            return (T) runner.run(parameter);
         }
         return null;
     }
