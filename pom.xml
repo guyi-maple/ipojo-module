@@ -40,6 +40,10 @@
 
     <pluginRepositories>
         <pluginRepository>
+            <id>aliyun</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>
+        <pluginRepository>
             <id>iot</id>
             <url>http://nexus.guyi-maple.top/content/repositories/iot/</url>
         </pluginRepository>
