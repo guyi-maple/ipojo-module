@@ -1,6 +1,5 @@
 package top.guyi.iot.ipojo.module.h2.where.condition.builder;
 
-import lombok.Getter;
 import top.guyi.iot.ipojo.application.utils.StringUtils;
 import top.guyi.iot.ipojo.module.h2.entity.Entity;
 import top.guyi.iot.ipojo.module.h2.where.SqlRuntimeException;

@@ -7,7 +7,7 @@
     <groupId>top.guyi.iot.ipojo.module</groupId>
     <artifactId>ipojo-module</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0.0</version>
+    <version>1.0.0.2-SNAPSHOT</version>
     <modules>
         <module>easy-h2-jdbc</module>
         <module>stream</module>
@@ -22,8 +22,8 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
 
-        <ipojo.compile.version>1.0.0.0</ipojo.compile.version>
-        <ipojo.version>1.0.0.0</ipojo.version>
+        <ipojo.compile.version>1.0.0.2-SNAPSHOT</ipojo.compile.version>
+        <ipojo.version>1.0.0.2-SNAPSHOT</ipojo.version>
         <lombok.version>1.18.8</lombok.version>
     </properties>
 
@@ -40,36 +40,31 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>aliyun</id>
-            <name>aliyun</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>guyi</id>
-            <name>guyi</name>
-            <url>http://nexus.guyi-maple.top/repository/maven-public/</url>
+            <id>iot</id>
+            <url>http://nexus.guyi-maple.top/content/repositories/iot/</url>
         </pluginRepository>
     </pluginRepositories>
 
     <repositories>
         <repository>
             <id>aliyun</id>
-            <name>aliyun</name>
             <url>https://maven.aliyun.com/repository/public</url>
         </repository>
-<!--        <repository>-->
-<!--            <id>guyi</id>-->
-<!--            <name>guyi</name>-->
-<!--            <url>http://nexus.guyi-maple.top/repository/maven-public/</url>-->
-<!--        </repository>-->
+        <repository>
+            <id>iot</id>
+            <url>http://nexus.guyi-maple.top/content/repositories/iot/</url>
+        </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
-            <id>guyi-iot</id>
-            <name>guyi-iot</name>
-            <url>http://nexus.guyi-maple.top/repository/osgi-iot/</url>
+            <id>iot-releases</id>
+            <url>http://nexus.guyi-maple.top/content/repositories/iot-releases/</url>
         </repository>
+        <snapshotRepository>
+            <id>iot-snapshots</id>
+            <url>http://nexus.guyi-maple.top/content/repositories/iot-snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <dependencies>

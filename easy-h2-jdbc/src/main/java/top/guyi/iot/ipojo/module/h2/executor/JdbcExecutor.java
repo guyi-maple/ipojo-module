@@ -3,9 +3,12 @@ package top.guyi.iot.ipojo.module.h2.executor;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.h2.jdbcx.JdbcDataSource;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.log.Logger;
+import top.guyi.iot.ipojo.application.ApplicationContext;
 import top.guyi.iot.ipojo.application.annotation.Component;
 import top.guyi.iot.ipojo.application.annotation.Resource;
+import top.guyi.iot.ipojo.application.bean.interfaces.ApplicationStartSuccessEvent;
 import top.guyi.iot.ipojo.application.bean.interfaces.InitializingBean;
 import top.guyi.iot.ipojo.application.osgi.log.Log;
 import top.guyi.iot.ipojo.module.h2.datasource.JdbcDataSourceProvider;
@@ -18,7 +21,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Component
-public class JdbcExecutor implements InitializingBean {
+public class JdbcExecutor implements InitializingBean, ApplicationStartSuccessEvent {
 
     @Resource
     private JdbcDataSourceProvider provider;
@@ -52,21 +55,6 @@ public class JdbcExecutor implements InitializingBean {
             }
         });
         this.readyMono.open();
-        Mono.create(new Producer<JdbcDataSource>() {
-            @Override
-            public void produce(Publisher<JdbcDataSource> publisher) {
-                provider.provide(publisher);
-            }
-        }).subscription(new Subscriber<JdbcDataSource>() {
-            @Override
-            public void subscription(JdbcDataSource value) {
-                dataSource = value;
-                runner = new QueryRunner(dataSource);
-                _publisher.publish(true);
-                readyMono = null;
-                _publisher = null;
-            }
-        }).open();
     }
 
     public synchronized <T> T execute(JdbcInvoker<T> invoker) throws SQLException {
@@ -93,4 +81,22 @@ public class JdbcExecutor implements InitializingBean {
         });
     }
 
+    @Override
+    public void onStartSuccess(ApplicationContext applicationContext, BundleContext bundleContext) throws Exception {
+        Mono.create(new Producer<JdbcDataSource>() {
+            @Override
+            public void produce(Publisher<JdbcDataSource> publisher) {
+                provider.provide(publisher);
+            }
+        }).subscription(new Subscriber<JdbcDataSource>() {
+            @Override
+            public void subscription(JdbcDataSource value) {
+                dataSource = value;
+                runner = new QueryRunner(dataSource);
+                _publisher.publish(true);
+                readyMono = null;
+                _publisher = null;
+            }
+        }).open();
+    }
 }

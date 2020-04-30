@@ -1,7 +1,10 @@
 package top.guyi.iot.ipojo.module.h2;
 
 import lombok.Setter;
+import org.osgi.framework.BundleContext;
+import top.guyi.iot.ipojo.application.ApplicationContext;
 import top.guyi.iot.ipojo.application.annotation.Resource;
+import top.guyi.iot.ipojo.application.bean.interfaces.ApplicationStartSuccessEvent;
 import top.guyi.iot.ipojo.application.bean.interfaces.InitializingBean;
 import top.guyi.iot.ipojo.application.utils.ReflectUtils;
 import top.guyi.iot.ipojo.module.h2.entry.DbEntity;
@@ -28,7 +31,7 @@ import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializable> implements InitializingBean {
+public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializable> implements InitializingBean, ApplicationStartSuccessEvent {
 
     private BeanHandler<E> beanHandler;
     private BeanListHandler<E> beanListHandler;
@@ -46,6 +49,10 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
             }
         });
         this.mono.open();
+    }
+
+    @Override
+    public void onStartSuccess(ApplicationContext applicationContext, BundleContext bundleContext) throws Exception {
         final JdbcRepository<E,ID> _this = this;
         this.executor.await(new Subscriber<Boolean>() {
             @Override
