@@ -1,5 +1,9 @@
 # ipojo-module
 
+为 [ipojo](https://github.com/guyi-maple/ipojo) 提供拓展，使用时需要依赖<code>ipojo</code>
+
+## 子模块
+
 * coap-server Coap协议服务端封装， 用法类似SpringMVC
 * easy-h2-jdbc 针对H2数据库的ORM框架，用法类似Hibernate
 * easy-helper 简易工具
