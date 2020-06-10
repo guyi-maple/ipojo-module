@@ -9,6 +9,6 @@ public enum CoapMethod {
 
     GET("GET"),POST("POST"),PUT("PUT"),DELETE("DELETE");
 
-    private String value;
+    private final String value;
 
 }
