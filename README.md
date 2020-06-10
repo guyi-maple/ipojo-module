@@ -5,7 +5,7 @@
 * easy-helper 简易工具
 * stream 响应式流
 
-详细使用方式，请参见 [文档]()
+详细使用方式，请参见 [文档](https://github.com/guyi-maple/ipojo-module/blob/master/doc/index.md)
 
 ## 安装
 
