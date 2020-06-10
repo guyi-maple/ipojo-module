@@ -25,7 +25,7 @@ public class TestDataSourceProvider implements JdbcDataSourceProvider {
 * 每个实体类中必须存在唯一一个主键字段，使用注解 [Id](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/entity/annotation/Id.java) 标识
 * 用于持久化的实体需要实现接口 [Entity](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/entity/Entity.java) ，接口泛型为主键字段的类型。需要实现方法<code>idGenerator</code>，提供ID生成器
 * 需要持久化的字段需要使用注解 [Column](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/entity/annotation/Column.java) 标识
-* 持久化字段只支持Java的八大数据类型
+* 持久化字段只支持String、Double (double)、Boolean (boolean)、Float (float)、Integer (int)
 * 持久化字段必须存在get/set方法
 
 ``` java
