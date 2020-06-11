@@ -44,3 +44,38 @@ public void test(){
 }
 
 ```
+
+## 类型转换器
+
+[TypeConverterSelector](../easy-helper/src/main/java/top/guyi/iot/ipojo/module/helper/converter/TypeConverterSelector.java)
+
+``` java
+
+@Resource
+private TypeConverterSelector selector;
+
+public void test(){
+    String text = "1.01";
+    System.out.println(this.selector(Double.class,text));
+}
+
+```
+
+添加组件，实现接口 [TypeConverter](../easy-helper/src/main/java/top/guyi/iot/ipojo/module/helper/converter/TypeConverter.java) 可以注册新的类型转换器。
+
+``` java
+@Component
+public class DoubleTypeConverter implements TypeConverter {
+
+    @Override
+    public Object convert(Object origin) {
+        return origin == null ? null : Double.parseDouble(origin.toString());
+    }
+
+    @Override
+    public String forType() {
+        return Double.class.getName();
+    }
+
+}
+```
