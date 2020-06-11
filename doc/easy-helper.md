@@ -5,15 +5,30 @@
 
 通过包装管理器 [ObjectDecoratorManager](../easy-helper/src/main/java/top/guyi/iot/ipojo/module/helper/decorator/ObjectDecoratorManager.java) 传入对象，可以调用对应的包装器。
 
+使用前需要通过 <code>ObjectDecoratorManager</code>注册包装器。
+
+``` java
+ObjectDecoratorManager.set(Class<?> objectClasses, ObjectDecorator decorator);
+```
+
 当不存在对应的对象包装器或包装器返回空值时，会返回传入的对象。
 
 ``` java
 @Component
-public class MqttOptionDecorator implements ObjectDecorator {
+public class MqttOptionDecorator implements ObjectDecorator, InitializingBean {
+    
+    @Resource
+    private ObjectDecoratorManager objectDecoratorManager;
+
     @Override
     public MqttConnectOptions decoration(MqttConnectOptions options) {
         options.setSocketFactory(new VertxSocketFactory(logger,network.get()));
         return options;
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        objectDecoratorManager.set(MqttConnectOptions.class,this);
     }
 }
 ```

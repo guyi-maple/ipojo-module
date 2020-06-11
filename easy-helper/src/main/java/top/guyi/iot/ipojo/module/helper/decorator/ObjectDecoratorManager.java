@@ -12,7 +12,7 @@ import java.util.Map;
 @Component
 public class ObjectDecoratorManager {
 
-    private Map<Class<?>,ObjectDecorator> decorators = new HashMap<>();
+    private final Map<Class<?>,ObjectDecorator> decorators = new HashMap<>();
 
     public <T> void set(Class<T> classes,ObjectDecorator<T> decorator){
         this.decorators.put(classes,decorator);
