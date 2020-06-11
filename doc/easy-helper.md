@@ -11,7 +11,7 @@
 ObjectDecoratorManager.set(Class<?> objectClasses, ObjectDecorator decorator);
 ```
 
-当不存在对应的对象包装器或包装器返回空值时，会返回传入的对象。
+当不存在对应的对象包装器时，会返回传入的对象。
 
 ``` java
 @Component
