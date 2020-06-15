@@ -25,8 +25,12 @@ public class JdbcExecutor implements InitializingBean, ApplicationStartSuccessEv
 
     @Resource
     private JdbcDataSourceProvider provider;
+
     @Log
     private Logger logger;
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
 
     private JdbcDataSource dataSource;
     private QueryRunner runner;
