@@ -57,9 +57,6 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
         this.executor.await(new Subscriber<Boolean>() {
             @Override
             public void subscription(Boolean value) {
-                mono = null;
-                _publisher = null;
-
                 executorService.schedule(new Runnable() {
                     @Override
                     public void run() {
@@ -73,6 +70,9 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
                         }
 
                         _publisher.publish(_this);
+
+                        mono = null;
+                        _publisher = null;
                     }
                 },1, TimeUnit.SECONDS);
             }

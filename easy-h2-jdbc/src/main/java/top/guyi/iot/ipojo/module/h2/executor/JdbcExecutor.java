@@ -18,6 +18,7 @@ import top.guyi.iot.ipojo.module.stream.publisher.Publisher;
 import top.guyi.iot.ipojo.module.stream.subscriber.Subscriber;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 @Component
@@ -61,6 +62,16 @@ public class JdbcExecutor implements InitializingBean, ApplicationStartSuccessEv
         this.readyMono.open();
     }
 
+    private List<Object> filterNull(List<?> args){
+        List<Object> result = new LinkedList<>();
+        for (Object arg : args) {
+            if (arg != null){
+                result.add(arg);
+            }
+        }
+        return result;
+    }
+
     public synchronized <T> T execute(JdbcInvoker<T> invoker) throws SQLException {
         return invoker.invoke(this.runner);
     }
@@ -69,8 +80,9 @@ public class JdbcExecutor implements InitializingBean, ApplicationStartSuccessEv
         return this.execute(new JdbcInvoker<Integer>(){
             @Override
             public Integer invoke(QueryRunner runner) throws SQLException {
-                logger.debug("execute sql [{}] Parameters {}",sql,args);
-                return runner.update(sql,args.toArray());
+                List<Object> parameters = filterNull(args);
+                logger.debug("execute sql [{}] Parameters {}",sql,parameters);
+                return runner.update(sql,parameters.toArray());
             }
         });
     }
@@ -79,8 +91,9 @@ public class JdbcExecutor implements InitializingBean, ApplicationStartSuccessEv
         return this.execute(new JdbcInvoker<T>() {
             @Override
             public T invoke(QueryRunner runner) throws SQLException {
-                logger.debug("execute sql [{}] Parameters {}",sql,args);
-                return runner.query(sql,handler,args.toArray());
+                List<Object> parameters = filterNull(args);
+                logger.debug("execute sql [{}] Parameters {}",sql,parameters);
+                return runner.query(sql,handler,parameters.toArray());
             }
         });
     }

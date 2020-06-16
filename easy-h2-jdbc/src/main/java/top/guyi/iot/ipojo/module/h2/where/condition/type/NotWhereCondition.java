@@ -13,6 +13,9 @@ public class NotWhereCondition implements WhereConditionType {
 
     @Override
     public String getSql(WhereConditionItem item) {
+        if (item.getValue() == null){
+            return String.format("%s not null",item.getName());
+        }
         return String.format("%s <> ?",item.getName());
     }
 

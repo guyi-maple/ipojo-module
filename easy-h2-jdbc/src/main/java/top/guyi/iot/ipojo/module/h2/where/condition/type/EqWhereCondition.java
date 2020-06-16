@@ -13,6 +13,9 @@ public class EqWhereCondition implements WhereConditionType {
 
     @Override
     public String getSql(WhereConditionItem item) {
+        if (item.getValue() == null){
+            return String.format("%s is null",item.getName());
+        }
         return String.format("%s = ?",item.getName());
     }
 
