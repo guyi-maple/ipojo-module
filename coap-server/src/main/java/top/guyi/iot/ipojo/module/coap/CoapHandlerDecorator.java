@@ -14,8 +14,8 @@ import java.util.Map;
 
 public abstract class CoapHandlerDecorator extends CoapResource {
 
-    private ApplicationContext applicationContext;
-    private CoapCurrent current;
+    private final ApplicationContext applicationContext;
+    private final CoapCurrent current;
 
     public CoapHandlerDecorator(String name,ApplicationContext applicationContext) {
         super(name);
@@ -24,14 +24,14 @@ public abstract class CoapHandlerDecorator extends CoapResource {
         this.registerAll();
     }
 
-    private Map<CoapMethod,CoapResourceInvoker> invokers = new HashMap<>();
+    private final Map<CoapMethod,CoapResourceInvoker> invokers = new HashMap<>();
     protected void register(CoapMethod method, CoapResourceInvoker invoker){
         this.invokers.put(method,invoker);
     }
 
     protected abstract void registerAll();
 
-    private static Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
     @Override
     public void handleGET(CoapExchange exchange) {
@@ -55,12 +55,12 @@ public abstract class CoapHandlerDecorator extends CoapResource {
     }
 
     private void execute(CoapExchange exchange,CoapResourceInvoker invoker) {
-        StaticLogger.info("receive coap request [{}] [{}]",this.getURI(),exchange.getRequestText());
+        StaticLogger.debug("receive coap request [{}] [{}]",this.getURI(),exchange.getRequestText());
         Object args = this.getArgs(exchange,invoker);
         args = args == null ? exchange : args;
         Object result = invoker.invoke(applicationContext,args);
         String json = gson.toJson(result);
-        StaticLogger.info("send coap response [{}] [{}]",this.getURI(),json);
+        StaticLogger.debug("send coap response [{}] [{}]",this.getURI(),json);
         exchange.respond(json);
     }
 
@@ -73,7 +73,7 @@ public abstract class CoapHandlerDecorator extends CoapResource {
             return null;
         }
         String json = exchange.getRequestText();
-        StaticLogger.info("receive coap request [{}] [{}]",this.getURI(),json);
+        StaticLogger.debug("receive coap request [{}] [{}]",this.getURI(),json);
         return gson.fromJson(json,type);
     }
 
