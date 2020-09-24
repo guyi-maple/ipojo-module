@@ -15,6 +15,26 @@
         <module>easy-helper</module>
     </modules>
 
+    <name>ipojo-module</name>
+    <url>https://github.com/guyi-maple</url>
+    <description>tech.guyi.ipojo:ipojo expand modules</description>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/guyi-maple/ipojo-module</url>
+        <connection>https://github.com/guyi-maple/ipojo-module.git</connection>
+    </scm>
+    <developers>
+        <developer>
+            <name>guyi-maple</name>
+            <email>guyi@guyi-maple.top</email>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <encoding>UTF-8</encoding>
