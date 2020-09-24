@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>easy-h2-jdbc</artifactId>
-    <packaging>ipojo-bundle</packaging>
 
     <properties>
         <h2.version>1.4.199</h2.version>
