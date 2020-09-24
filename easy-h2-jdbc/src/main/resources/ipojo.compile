@@ -1,6 +1,6 @@
 {
   "name": "h2-jdbc",
-  "package": "top.guyi.iot.ipojo.module.h2",
+  "package": "tech.guyi.ipojo.module.h2",
   "jdk": "7",
   "formatJdkVersion": true,
   "manifest": {

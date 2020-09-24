@@ -1,6 +1,6 @@
 {
   "name": "stream",
-  "package": "top.guyi.iot.ipojo.module.stream",
+  "package": "tech.guyi.ipojo.module.stream",
   "jdk": "7",
   "formatJdkVersion": true,
   "modules": "stream"

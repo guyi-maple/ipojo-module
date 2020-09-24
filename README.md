@@ -17,7 +17,7 @@
 
 ``` xml
 <dependency>
-    <groupId>top.guyi.iot.ipojo.module</groupId>
+    <groupId>tech.guyi.ipojo.module</groupId>
     <artifactId>coap-server</artifactId>
     <version>1.0.0.2-SNAPSHOT</version>
 </dependency>
@@ -27,7 +27,7 @@
 
 ``` xml
 <dependency>
-    <groupId>top.guyi.iot.ipojo.module</groupId>
+    <groupId>tech.guyi.ipojo.module</groupId>
     <artifactId>easy-h2-jdbc</artifactId>
     <version>1.0.0.2-SNAPSHOT</version>
 </dependency>
@@ -37,7 +37,7 @@
 
 ``` xml
 <dependency>
-    <groupId>top.guyi.iot.ipojo.module</groupId>
+    <groupId>tech.guyi.ipojo.module</groupId>
     <artifactId>easy-helper</artifactId>
     <version>1.0.0.2-SNAPSHOT</version>
 </dependency>
@@ -47,7 +47,7 @@
 
 ``` xml
 <dependency>
-    <groupId>top.guyi.iot.ipojo.module</groupId>
+    <groupId>tech.guyi.ipojo.module</groupId>
     <artifactId>stream</artifactId>
     <version>1.0.0.2-SNAPSHOT</version>
 </dependency>

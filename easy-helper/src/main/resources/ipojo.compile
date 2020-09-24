@@ -1,4 +1,4 @@
 {
   "name": "easy-helper",
-  "package": "top.guyi.iot.ipojo.module.helper"
+  "package": "tech.guyi.ipojo.module.helper"
 }

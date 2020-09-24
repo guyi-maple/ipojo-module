@@ -1,16 +1,6 @@
 package top.guyi.test;
 
-import top.guyi.iot.ipojo.module.h2.JdbcRepository;
-import top.guyi.iot.ipojo.module.h2.where.condition.converter.AnyWhereConditionTypeConverter;
-import top.guyi.iot.ipojo.module.h2.where.condition.converter.NullWhereConditionTypeConverter;
-import top.guyi.iot.ipojo.module.h2.where.condition.converter.WhereConditionTypeConverter;
-import top.guyi.iot.ipojo.module.h2.where.condition.type.*;
-
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public class Main {
 
