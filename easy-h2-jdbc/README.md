@@ -1,9 +1,17 @@
+## 安装
+```xml
+<dependency>
+    <groupId>tech.guyi.ipojo</groupId>
+    <artifactId>easy-h2-jdbc</artifactId>
+    <version>1.0.0.0</version>
+</dependency>
+```
 
 ## 配置数据源
 
 使用前需要配置数据源，指定H2数据库文件地址等信息。
 
-添加组件，实现 [JdbcDataSourceProvider](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/datasource/JdbcDataSourceProvider.java) 接口的<code>provide</code>方法即可配置H2数据源。
+添加组件，实现 [JdbcDataSourceProvider](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/datasource/JdbcDataSourceProvider.java) 接口的<code>provide</code>方法即可配置H2数据源。
 
 ``` java
 @Component
@@ -22,9 +30,9 @@ public class TestDataSourceProvider implements JdbcDataSourceProvider {
 
 ## 添加实体
 
-* 每个实体类中必须存在唯一一个主键字段，使用注解 [Id](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/entity/annotation/Id.java) 标识
-* 用于持久化的实体需要实现接口 [Entity](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/entity/Entity.java) ，接口泛型为主键字段的类型。需要实现方法<code>idGenerator</code>，提供ID生成器
-* 需要持久化的字段需要使用注解 [Column](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/entity/annotation/Column.java) 标识
+* 每个实体类中必须存在唯一一个主键字段，使用注解 [Id](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/entity/annotation/Id.java) 标识
+* 用于持久化的实体需要实现接口 [Entity](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/entity/Entity.java) ，接口泛型为主键字段的类型。需要实现方法<code>idGenerator</code>，提供ID生成器
+* 需要持久化的字段需要使用注解 [Column](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/entity/annotation/Column.java) 标识
 * 持久化字段只支持String、Double (double)、Boolean (boolean)、Float (float)、Integer (int)
 * 持久化字段必须存在get/set方法
 
@@ -83,12 +91,12 @@ public class Device implements Entity<String> {
 ### Column注解属性
 
 * name - 数据库字段名称，默认使用被注解字段的名称
-* type - 数据库字段类型，默认根据被注解字段的类型进行映射，映射关系参见 [ColumnTypeConverter](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/type/ColumnTypeConverter.java)
-* length - 数据库字段长度， 默认为-1， 表示使用默认长度， 默认长度数据参见 [ColumnTypeConverter](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/type/ColumnTypeConverter.java)
+* type - 数据库字段类型，默认根据被注解字段的类型进行映射，映射关系参见 [ColumnTypeConverter](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/type/ColumnTypeConverter.java)
+* length - 数据库字段长度， 默认为-1， 表示使用默认长度， 默认长度数据参见 [ColumnTypeConverter](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/type/ColumnTypeConverter.java)
 
 ### 更改表名
 
-数据库表名默认使用实体名称，如果需要更改可以使用注解 [Table](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/entity/annotation/Table.java)
+数据库表名默认使用实体名称，如果需要更改可以使用注解 [Table](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/entity/annotation/Table.java)
 
 ``` java
 @Table(name = "test_device")
@@ -99,7 +107,7 @@ public class Device implements Entity<String> { }
 
 数据库操作需要为实体添加Repository。
 
-添加组件，继承 [JdbcRepository](../easy-h2-jdbc/src/main/java/top/guyi/iot/ipojo/module/h2/JdbcRepository.java) ，泛型为实体及实体主键类型
+添加组件，继承 [JdbcRepository](../easy-h2-jdbc/src/main/java/tech/guyi/ipojo/module/h2/JdbcRepository.java) ，泛型为实体及实体主键类型
 
 ``` java
 @Component

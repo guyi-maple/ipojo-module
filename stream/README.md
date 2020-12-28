@@ -1,3 +1,12 @@
+## 安装
+
+```xml
+<dependency>
+    <groupId>tech.guyi.ipojo</groupId>
+    <artifactId>stream</artifactId>
+    <version>1.0.0.0</version>
+</dependency>
+```
 
 ## Mono
 
@@ -35,7 +44,7 @@ public void test(){
 }
 ```
 
-上面的示例是一个标准的使用方式，如果觉得繁琐，可以使用注解 [@Awaiter](../stream/src/main/java/top/guyi/iot/ipojo/module/stream/annotation/Awaiter.java) 快速创建一个Mono流。
+上面的示例是一个标准的使用方式，如果觉得繁琐，可以使用注解 [@Awaiter](../stream/src/main/java/tech/guyi/ipojo/module/stream/annotation/Awaiter.java) 快速创建一个Mono流。
 
 ``` java
 @Awaiter
@@ -128,7 +137,7 @@ public void test(){
 }
 ```
 
-## [Asynchronous](../stream/src/main/java/top/guyi/iot/ipojo/module/stream/async/Asynchronous.java)
+## [Asynchronous](../stream/src/main/java/tech/guyi/ipojo/module/stream/async/Asynchronous.java)
 
 使用此组件可以完成先返回数据随后异步执行代码的逻辑。
 

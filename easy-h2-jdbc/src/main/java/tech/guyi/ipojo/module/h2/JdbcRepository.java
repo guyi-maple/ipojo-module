@@ -248,4 +248,12 @@ public abstract class JdbcRepository<E extends Entity<ID>,ID extends Serializabl
                 .value(id).eq()
                 .delete() > 0;
     }
+
+    public void deleteAll(){
+        try {
+            this.executor.update(String.format("delete from %s", this.entity.getTableName()),Collections.EMPTY_LIST);
+        } catch (SQLException e) {
+            throw new SqlRuntimeException(e);
+        }
+    }
 }

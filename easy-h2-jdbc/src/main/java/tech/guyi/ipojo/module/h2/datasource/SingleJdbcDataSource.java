@@ -11,7 +11,7 @@ public class SingleJdbcDataSource extends JdbcDataSource {
     private NoCloseConnection connection;
 
     public void setDBFilePath(String path){
-        this.setURL(String.format("jdbc:h2:%s;FILE_LOCK=NO",path));
+        this.setURL(String.format("jdbc:h2:%s;FILE_LOCK=NO;TRACE_LEVEL_FILE=0;TRACE_LEVEL_SYSTEM_OUT=0",path));
     }
 
     @Override

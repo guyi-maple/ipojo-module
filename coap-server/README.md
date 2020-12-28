@@ -1,9 +1,17 @@
+## 安装
+```xml
+<dependency>
+    <groupId>tech.guyi.ipojo</groupId>
+    <artifactId>coap-server</artifactId>
+    <version>1.0.0.0</version>
+</dependency>
+```
 
 ## 注册Coap接口
 
 Coap-Server基于<code>eclipse.californium</code>提供了类似SpringMVC形式的接口注册。
 
-通过注解 [@CoapMapping](../coap-server/src/main/java/top/guyi/iot/ipojo/module/coap/annotation/CoapMapping.java) 可以很简单的注册一个Coap接口
+通过注解 [@CoapMapping](../coap-server/src/main/java/tech/guyi/ipojo/module/coap/annotation/CoapMapping.java) 可以很简单的注册一个Coap接口
 
 ``` java
 @CoapMapping(path = "test/one")
@@ -36,7 +44,7 @@ public YouResponseEntity test(CoapExchange exchange){
 * PUT <code>@CoapMapping(path = "...", method = CoapMethod.PUT)</code>
 * DELETE <code>@CoapMapping(path = "...", method = CoapMethod.DELETE)</code>
 
-## [CoapCurrent](../coap-server/src/main/java/top/guyi/iot/ipojo/module/coap/utils/CoapCurrent.java)
+## [CoapCurrent](../coap-server/src/main/java/tech/guyi/ipojo/module/coap/utils/CoapCurrent.java)
 
 #### 获取请求者IP
 
