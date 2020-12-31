@@ -3,7 +3,7 @@
 <dependency>
     <groupId>tech.guyi.ipojo</groupId>
     <artifactId>easy-h2-jdbc</artifactId>
-    <version>1.0.0.0</version>
+    <version>${ipojo.module.version}</version>
 </dependency>
 ```
 
